@@ -1,0 +1,23 @@
+# Vector table should be at 0x0 on reset/power on
+
+# vector table ------------------------------------------
+# 0x00 - contains address of initial stack pointer: 0x2000.8000
+00 80 00 20
+
+# 0x04 - contains address of reset handler: 0x0000.0008 | 1 (thumb mode set)
+09 00 00 00
+# -------------------------------------------------------
+
+
+# Reset handler - Continuously increments R0 ------------------------------------------
+# 0x08 - MOV R0 0x01: 0b00100000.00000001 -> 0x2001
+01 20 
+
+# loop while incrementing R0
+# 0x0A - ADD R0 0x01: 0b00110000.00000001 -> 0x3001
+01 30
+
+# branch back to the add
+# 0x0C - B to 0x0A (-6 offset in bytes, -3 in halfwords): 0b11100111.11111101 -> 0xE7FD
+FD E7
+# -------------------------------------------------------------------------------------

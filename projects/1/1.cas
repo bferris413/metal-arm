@@ -1,0 +1,10 @@
+; vector table
+x2000.8000         ; sp starting address
+x0000.0009         ; reset handler address | 1 (thumb mode)
+
+; Reset handler - Initializes and continuously increments R0
+MOVS R0 x01
+
+@loop
+    ADDS R0 x01
+    B @loop

@@ -39,10 +39,13 @@ flash write_image erase ./program.bin 0x00000000 bin
 ```
 - step and inspect with gdb:
 ```
-arm-non-eabi-gdb
+arm-none-eabi-gdb
 (gdb) target extended-remote :3333
 Remote debugging using :3333
 # ...
+(gdb) monitor reset halt
+[tm4c123gh6pm.cpu] halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x00000008 msp: 0x20008000
 (gdb) stepi
 halted: PC: 0x0000000a
 (gdb) info registers

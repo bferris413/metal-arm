@@ -15,8 +15,8 @@ Project 2 consists of:
   - (most only support the minimum needed for the given context, like 1 or 2 encodings,
     no "optional" parameters, no conditions, etc.)
 - Continued reading a bunch of:
-  - [TM4C123GH6PM Microcontroller data sheet](https://www.ti.com/lit/ds/symlink/tm4c123gh6pm.pdf?ts=1759278523305&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTM4C123GH6PM) - instructions and encodings mostly at this point.
-  - [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/ee) - all board-specific info, like where GPIO ports are located, how to initialize them, etc.
+  - [TM4C123GH6PM Microcontroller data sheet](https://www.ti.com/lit/ds/symlink/tm4c123gh6pm.pdf?ts=1759278523305&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTM4C123GH6PM) - all board-specific info, like where GPIO ports are located, how to initialize them, etc.
+  - [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/ee) - instructions and encodings mostly at this point.
 - Flashed and tested on EK-TM4C123GXL, and we get a solid red LED 🎉 
   - Used `chasm assemble 2.cas` on commit `b601092026c8f0d11192b516a2ef74d5e528f92f`
 

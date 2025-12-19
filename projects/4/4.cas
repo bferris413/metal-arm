@@ -1,0 +1,17 @@
+; vector table (LM3S6965) ----------------------------------------------
+x2000.8000                      ; sp starting address
+thumb-addr!(&reset)             ; reset handler address | 1 (thumb mode)
+pad-with-to!(x00, x0000.00F0)   ; pad out the rest of the vtable
+; ----------------------------------------------------------------------
+
+@reset
+    MOVS R1 x01
+    BL &handler
+    MOVS R3 x03
+
+    @loop
+        B &loop
+
+@handler
+    MOVS R2 x02
+    BX LR

@@ -38,11 +38,11 @@ Checkpoint commit for this phase is [`538eb031d77d44ed7fe6cc28f56c35aee624c410`]
     &module::my-public-label
     &module::my-other-label
     ```
-- A hybrid binary/human-readable format for compiled modules:
-    - I wanted something with a human-readable header that would enable me to debug without writing a custom `objdump` like
+- A hybrid binary/human-readable format for compiled modules serialized to disk:
+    - I wanted something with a human-readable header that would enable me to debug without writing a custom `objdump`-like
     program right off the bat. 
     - I also didn't want to waste a _ton_ of space making all compiled code human readable.
-    - Given the constaints, I ended up with a hybrid format containing three parts (for now):
+    - Given the constraints, I ended up with a hybrid format containing three parts (for now):
         1. Binary prelude: 
             ```
             CHASM MODULE\n
@@ -104,13 +104,12 @@ Checkpoint commit for this phase is [`538eb031d77d44ed7fe6cc28f56c35aee624c410`]
             }
             \n\n
             ```
-        3. The module's code, followed by \n\n.
+        3. The module's code, followed by `\n\n`.
 - A linker, with compiler driver support for linking both at build time and as a standalone step:
     - Having imports and cross-module references implies the existence of a tool to resolve them, so here we have it.
     - `chasm assemble` will link the provided assembly modules into a single binary by default.
-    - if `--no-link` is specified, the modules will be serialized and written to disk.
+    - If `--no-link` is specified, the modules will be serialized and written to disk.
     - `chasm link` takes a list of paths pointing to serialized assembly modules and links them into a single binary.
-
 
 ## Next Steps
 Adding the module system was a significant step for Chasm and I'm overall pretty happy with the result. I'm sure there are things
@@ -118,6 +117,6 @@ that will need cleanup or refactoring, but for now it's working as intended. Now
 to go:
 - Venture back to the embedded side of things and integrate with more of the hardware. The TM4C123GXL kit I have has some pluggable
 modules, including a screen, that I may try to draw simple graphics on.
-- An editor. I _really_ want the Chasm development experience to be 100% focused. After developing some plugins for VS Code during
+- Build an editor. I _really_ want the Chasm development experience to be 100% focused. After developing some plugins for VS Code during
 another project, I'd like to explore the idea of not using Microsoft's editor and instead build my own.
-- The high-level Chasm language. Probably won't tackle this yet, but some ideas are cooking.
+- Start the high-level Chasm language. Probably won't tackle this yet, but some ideas are cooking.
